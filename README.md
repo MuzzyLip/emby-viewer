@@ -1,16 +1,81 @@
-# emby_viwer
+# Emby Viewer
 
-A new Flutter project.
+This is a cross-platform Emby Server media library client for iOS and Android.
 
-## Getting Started
+## Architecture Goals
 
-This project is a starting point for a Flutter application.
+- Maintainable: split by business features, avoid large mixed files
+- Testable: keep domain and use-case logic easy to unit test
+- Scalable: add new features with a repeatable module template
+- Replaceable: keep network, storage, and state layers loosely coupled
 
-A few resources to get you started if this is your first Flutter project:
+## Recommended Project Structure
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```text
+lib/
+  main.dart
+  src/
+    app/                      # App assembly: bootstrap, router, theme, DI
+      app.dart
+      bootstrap.dart
+      di/
+      router/
+      theme/
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    core/                     # Cross-feature foundational capabilities
+      constants/
+      error/
+      network/
+      result/
+      storage/
+
+    features/                 # Feature modules
+      auth/                   # Sign in and auth session
+        data/
+        domain/
+        presentation/
+      server/                 # Multi-server management
+      library/                # Media browsing
+      playback/               # Playback and progress sync
+      settings/               # Preferences and diagnostics
+
+    shared/                   # Reusable UI building blocks
+      widgets/
+
+test/
+  unit/
+  widget/
+  integration/
+```
+
+## Layer Rules
+
+- `presentation` depends on `domain`/`application`, not remote implementation details
+- `domain` should stay framework-light and business-focused
+- `data` handles API/local/cache orchestration and model mapping
+- `core` is for shared technical utilities, not business rules
+
+## Per-Feature Template
+
+```text
+features/<feature_name>/
+  data/
+    datasources/
+    models/
+    repositories/
+  domain/
+    entities/
+    repositories/
+    usecases/
+  presentation/
+    controllers/
+    pages/
+    widgets/
+```
+
+## Engineering Baseline
+
+- Quality gates: `flutter analyze` + `dart format --set-exit-if-changed`
+- Testing: require unit tests for core business use cases
+- Delivery: conventional commits + PR template + code review checklist
+- CI: analyze, test, coverage, and build verification

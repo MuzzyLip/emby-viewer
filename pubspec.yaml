@@ -1,5 +1,5 @@
 name: emby_viwer
-description: "A new Flutter project."
+description: "A cross-platform Emby media client built with Flutter. Supports iOS, Android."
 publish_to: 'none'
 
 version: 1.0.0+1
