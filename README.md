@@ -34,9 +34,9 @@ lib/
         data/
         domain/
         presentation/
-      server/                 # Multi-server management
+      home/                   # Home Page
       library/                # Media browsing
-      playback/               # Playback and progress sync
+      search/                 # Search Media
       settings/               # Preferences and diagnostics
 
     shared/                   # Reusable UI building blocks
