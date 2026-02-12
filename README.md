@@ -14,33 +14,32 @@ This is a cross-platform Emby Server media library client for iOS and Android.
 ```text
 lib/
   main.dart
-  src/
-    app/                      # App assembly: bootstrap, router, theme, DI
-      app.dart
-      bootstrap.dart
-      di/
-      router/
-      theme/
+  app/                      # App assembly: bootstrap, router, theme, DI
+    app.dart
+    bootstrap.dart
+    di/
+    router/
+    theme/
 
-    core/                     # Cross-feature foundational capabilities
-      constants/
-      error/
-      network/
-      result/
-      storage/
+  core/                     # Cross-feature foundational capabilities
+    constants/
+    error/
+    network/
+    result/
+    storage/
 
-    features/                 # Feature modules
-      auth/                   # Sign in and auth session
-        data/
-        domain/
-        presentation/
-      home/                   # Home Page
-      library/                # Media browsing
-      search/                 # Search Media
-      settings/               # Preferences and diagnostics
+  features/                 # Feature modules
+    auth/                   # Sign in and auth session
+      data/
+      domain/
+      presentation/
+    home/                   # Home Page
+    library/                # Media browsing
+    search/                 # Search Media
+    settings/               # Preferences and diagnostics
 
-    shared/                   # Reusable UI building blocks
-      widgets/
+  shared/                   # Reusable UI building blocks
+    widgets/
 
 test/
   unit/

@@ -19,4 +19,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTab => 'Settings';
+
+  @override
+  String get signInPage_connectToEmby => 'Connect to your Emby server';
+
+  @override
+  String get signInPage_serverAddr => 'SERVER ADDRESS';
+
+  @override
+  String get signInPage_serverAddrPlaceholder => 'Enter Server Address';
+
+  @override
+  String get signInPage_username => 'USERNAME';
+
+  @override
+  String get signInPage_usernamePlaceholder => 'Enter Username';
+
+  @override
+  String get signInPage_password => 'PASSWORD';
+
+  @override
+  String get signInPage_passwordPlaceholder => 'Enter Password';
+
+  @override
+  String get signInPage_connectToServer => 'Connect to Server';
 }

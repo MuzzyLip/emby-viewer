@@ -1,6 +1,8 @@
-import 'package:emby_viwer/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:emby_viwer/app/theme/color_tokens.dart';
+import 'package:emby_viwer/l10n/app_localizations.dart';
 
 class AppTabShell extends StatelessWidget {
   const AppTabShell({required this.navigationShell, super.key});
@@ -10,8 +12,10 @@ class AppTabShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final colos = Theme.of(context).colorTokens;
     return Scaffold(
       body: navigationShell,
+      backgroundColor: colos.background,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: navigationShell.currentIndex,
         onTap: (int index) {

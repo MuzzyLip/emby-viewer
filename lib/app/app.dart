@@ -14,6 +14,7 @@ class EmbyViewerApp extends StatelessWidget {
       title: AppConstants.appName,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
+      themeMode: ThemeMode.dark,
       routerConfig: AppRouter.router,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

@@ -2,5 +2,13 @@
   "homeTab": "首页",
   "libraryTab": "媒体库",
   "searchTab": "搜索",
-  "settingsTab": "设置"
+  "settingsTab": "设置",
+  "signInPage_connectToEmby": "连接到你的Emby服务",
+  "signInPage_serverAddr": "服务地址",
+  "signInPage_serverAddrPlaceholder": "请输入服务地址",
+  "signInPage_username": "用户名",
+  "signInPage_usernamePlaceholder": "请输入用户名",
+  "signInPage_password": "密码",
+  "signInPage_passwordPlaceholder": "请输入密码",
+  "signInPage_connectToServer": "连接到服务"
 }

@@ -118,6 +118,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settingsTab;
+
+  /// No description provided for @signInPage_connectToEmby.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to your Emby server'**
+  String get signInPage_connectToEmby;
+
+  /// No description provided for @signInPage_serverAddr.
+  ///
+  /// In en, this message translates to:
+  /// **'SERVER ADDRESS'**
+  String get signInPage_serverAddr;
+
+  /// No description provided for @signInPage_serverAddrPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Server Address'**
+  String get signInPage_serverAddrPlaceholder;
+
+  /// No description provided for @signInPage_username.
+  ///
+  /// In en, this message translates to:
+  /// **'USERNAME'**
+  String get signInPage_username;
+
+  /// No description provided for @signInPage_usernamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Username'**
+  String get signInPage_usernamePlaceholder;
+
+  /// No description provided for @signInPage_password.
+  ///
+  /// In en, this message translates to:
+  /// **'PASSWORD'**
+  String get signInPage_password;
+
+  /// No description provided for @signInPage_passwordPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Password'**
+  String get signInPage_passwordPlaceholder;
+
+  /// No description provided for @signInPage_connectToServer.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to Server'**
+  String get signInPage_connectToServer;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

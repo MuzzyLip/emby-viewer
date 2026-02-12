@@ -24,6 +24,7 @@ final class AppRoutePaths {
 
 final class AppRouter {
   static final GoRouter router = GoRouter(
+    // TODO: Redirect To Auth
     initialLocation: AppRoutePaths.signIn,
     routes: <RouteBase>[
       GoRoute(

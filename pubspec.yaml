@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   flutter_localizations: # i18n
     sdk: flutter
+  flutter_svg: ^2.2.3 # SVG Renderer
   cupertino_icons: ^1.0.8
   go_router: ^17.1.0 # Router
   dio: ^5.9.1 # HTTP Request
@@ -20,7 +21,15 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  build_runner:
+  flutter_gen_runner:
 
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/images/
+
+flutter_gen:
+  output: lib/gen/
+  line_length: 80
