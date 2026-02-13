@@ -1,6 +1,6 @@
 name: emby_viwer
 description: "A cross-platform Emby media client built with Flutter. Supports iOS, Android."
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -16,6 +16,18 @@ dependencies:
   cupertino_icons: ^1.0.8
   go_router: ^17.1.0 # Router
   dio: ^5.9.1 # HTTP Request
+  url_launcher: ^6.3.2 # URL Launch
+  fluttertoast: ^9.0.0 # Toast
+  # Dto
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  # Storage
+  flutter_secure_storage: ^10.0.0
+  # Uuid
+  uuid: ^4.4.2
+  # Device Info
+  device_info_plus: ^12.3.0
+
 
 dev_dependencies:
   flutter_test:
@@ -23,6 +35,9 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner:
   flutter_gen_runner:
+  # Dto
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
 
 flutter:
   uses-material-design: true

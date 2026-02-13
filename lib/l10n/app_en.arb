@@ -10,5 +10,8 @@
   "signInPage_usernamePlaceholder": "Enter Username",
   "signInPage_password": "PASSWORD",
   "signInPage_passwordPlaceholder": "Enter Password",
-  "signInPage_connectToServer": "Connect to Server"
+  "signInPage_connectToServer": "Connect to Server",
+  "signInPage_newToEmby": "New to Emby?",
+  "signInPage_learnMore": "Learn more",
+  "signInPage_enterInput": "Please enter entire information"
 }

@@ -166,6 +166,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Connect to Server'**
   String get signInPage_connectToServer;
+
+  /// No description provided for @signInPage_newToEmby.
+  ///
+  /// In en, this message translates to:
+  /// **'New to Emby?'**
+  String get signInPage_newToEmby;
+
+  /// No description provided for @signInPage_learnMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn more'**
+  String get signInPage_learnMore;
+
+  /// No description provided for @signInPage_enterInput.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter entire information'**
+  String get signInPage_enterInput;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -43,4 +43,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signInPage_connectToServer => 'Connect to Server';
+
+  @override
+  String get signInPage_newToEmby => 'New to Emby?';
+
+  @override
+  String get signInPage_learnMore => 'Learn more';
+
+  @override
+  String get signInPage_enterInput => 'Please enter entire information';
 }

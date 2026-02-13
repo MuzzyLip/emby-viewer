@@ -6,3 +6,13 @@ class AppException implements Exception {
   @override
   String toString() => "AppException: $message";
 }
+
+class NetworkException implements Exception {
+  final int code;
+  final String message;
+
+  const NetworkException(this.code, this.message);
+
+  @override
+  String toString() => "NetworkException: ($code $message)";
+}

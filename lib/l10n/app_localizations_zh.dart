@@ -43,4 +43,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get signInPage_connectToServer => '连接到服务';
+
+  @override
+  String get signInPage_newToEmby => '不熟悉Emby？';
+
+  @override
+  String get signInPage_learnMore => '了解更多';
+
+  @override
+  String get signInPage_enterInput => '请输入完整信息';
 }

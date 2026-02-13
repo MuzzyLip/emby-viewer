@@ -1,16 +1,20 @@
+import 'package:emby_viwer/features/auth/data/auth_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:emby_viwer/core/constants/app_constants.dart';
 import 'package:emby_viwer/app/theme/size_tokens.dart';
 import 'package:emby_viwer/app/theme/color_tokens.dart';
 import 'package:emby_viwer/l10n/app_localizations.dart';
 import 'package:emby_viwer/gen/assets.gen.dart';
+import 'package:emby_viwer/core/error/app_exception.dart';
 
 import 'package:emby_viwer/shared/widgets/app_logo.dart';
 import 'package:emby_viwer/features/auth/widgets/app_sign_in_title.dart';
 import 'package:emby_viwer/shared/widgets/app_input.dart';
 import 'package:emby_viwer/features/auth/widgets/app_sign_in_button.dart';
+import 'package:emby_viwer/core/presentation/toast/app_toast.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -23,6 +27,8 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  final Uri _url = Uri.parse("https://emby.media/about.html");
 
   @override
   void initState() {
@@ -93,7 +99,36 @@ class _SignInPageState extends State<SignInPage> {
                       password: true,
                     ),
                     SizedBox(height: AppSizeTokens.homePaddingHorizontal),
-                    AppSignInButton(onTap: onTopSignIn),
+                    AppSignInButton(onTap: () => onTopSignIn(context, l10n)),
+                    SizedBox(height: AppSizeTokens.spacingXL),
+                    Row(
+                      spacing: AppSizeTokens.spacingM,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          l10n.signInPage_newToEmby,
+                          style: TextStyle(
+                            fontSize: AppSizeTokens.titleXs,
+                            color: colors.fontLabel,
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: EdgeInsets.all(0),
+                          ),
+                          onPressed: _launchInBrowser,
+                          child: Text(
+                            l10n.signInPage_learnMore,
+                            style: TextStyle(
+                              fontSize: AppSizeTokens.titleXs,
+                              color: colors.brandPrimary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -104,5 +139,41 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  void onTopSignIn() {}
+  void onTopSignIn(BuildContext context, AppLocalizations l10n) async {
+    final String address = _addressController.text.trim();
+    final String username = _usernameController.text.trim();
+    final String password = _passwordController.text.trim();
+    if (address == "" || username == "" || password == "") {
+      return AppToast.warning(context, l10n.signInPage_enterInput);
+    }
+    try {
+      final client = AuthClient();
+      final info = await client.systemInfoPublic(serverAddress: address);
+      if (info.version == null) {
+        throw AppException("UnExceptError: Can't get version. $info");
+      }
+      final data = await client.authenticateByName(
+        serverAddress: address,
+        username: username,
+        password: password,
+        version: info.version!,
+        language: l10n.localeName,
+      );
+      if (!context.mounted) return;
+      debugPrint("Check data: ${data.accessToken}");
+    } on NetworkException catch (e) {
+      // TODO: Detected an untrusted certificate; prompting the user to connect via an insecure connection.
+      if (!context.mounted) return;
+      AppToast.error(context, e.message);
+    } catch (e) {
+      if (!context.mounted) return;
+      AppToast.error(context, "Request failed: $e");
+    }
+  }
+
+  Future<void> _launchInBrowser() async {
+    if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
+      throw Exception("Failed to launch url $_url");
+    }
+  }
 }

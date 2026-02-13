@@ -19,8 +19,11 @@ class AppSizeTokens {
   static const double spacing2Xs = 2;
 
   /// font Size
-  static const double titleXl = 24;
+  static const double title2Xl = 24;
+  static const double titleXl = 22;
+  static const double titleL = 20;
   static const double titleM = 18;
+  static const double titleS = 16;
   static const double titleXs = 14;
 
   /// Icon Size

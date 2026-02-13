@@ -11,6 +11,8 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
     required this.background,
     required this.inputBackground,
     required this.border,
+    required this.warning,
+    required this.error,
   });
 
   final Color brandPrimary;
@@ -22,6 +24,8 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
   final Color background;
   final Color inputBackground;
   final Color border;
+  final Color warning;
+  final Color error;
 
   const ColorTokens.light()
     : brandPrimary = const Color(0xFF51B54A),
@@ -32,7 +36,9 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       fontPlaceholder = const Color(0xFF475569),
       background = const Color(0xFFFCFCFC),
       inputBackground = const Color(0xFF222222),
-      border = const Color(0xFF333333);
+      border = const Color(0xFF333333),
+      warning = const Color(0xFFFDD663),
+      error = const Color(0xFFF44336);
 
   const ColorTokens.dark()
     : brandPrimary = const Color(0xFF51B54A),
@@ -43,7 +49,9 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       fontPlaceholder = const Color(0xFF475569),
       background = const Color(0xFF1C1D1B),
       inputBackground = const Color(0xFF222222),
-      border = const Color(0xFF333333);
+      border = const Color(0xFF333333),
+      warning = const Color(0xFFFDD663),
+      error = const Color(0xFFF44336);
 
   @override
   ColorTokens copyWith({
@@ -56,6 +64,8 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
     Color? background,
     Color? inputBackground,
     Color? border,
+    Color? warning,
+    Color? error,
   }) {
     return ColorTokens(
       brandPrimary: brandPrimary ?? this.brandPrimary,
@@ -67,6 +77,8 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       background: background ?? this.background,
       inputBackground: inputBackground ?? this.inputBackground,
       border: border ?? this.border,
+      warning: warning ?? this.warning,
+      error: error ?? this.error,
     );
   }
 
@@ -86,6 +98,8 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       background: Color.lerp(background, other.background, t)!,
       inputBackground: Color.lerp(inputBackground, other.inputBackground, t)!,
       border: Color.lerp(border, other.border, t)!,
+      warning: Color.lerp(warning, other.warning, t)!,
+      error: Color.lerp(error, other.error, t)!,
     );
   }
 }

@@ -19,7 +19,7 @@ class AppSignInTitle extends StatelessWidget {
           title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: AppSizeTokens.titleXl,
+            fontSize: AppSizeTokens.title2Xl,
             color: colors.fontColor,
           ),
         ),
