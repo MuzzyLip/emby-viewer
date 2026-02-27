@@ -16,7 +16,6 @@ class AppTabShell extends StatelessWidget {
     final tabs = <_BottomTab>[
       _BottomTab(icon: Icons.home_outlined, label: l10n.homeTab),
       _BottomTab(icon: Icons.video_library_outlined, label: l10n.libraryTab),
-      _BottomTab(icon: Icons.search, label: l10n.searchTab),
       _BottomTab(icon: Icons.settings_outlined, label: l10n.settingsTab),
     ];
     final items = tabs

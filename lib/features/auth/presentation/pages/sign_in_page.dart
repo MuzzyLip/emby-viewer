@@ -145,10 +145,11 @@ class _SignInPageState extends State<SignInPage> {
     final String address = _addressController.text.trim();
     final String username = _usernameController.text.trim();
     final String password = _passwordController.text.trim();
-    if (address == "" || username == "" || password == "") {
+    if (address == "" || username == "") {
       return AppToast.warning(context, l10n.signInPage_enterInput);
     }
     try {
+      // TODO: Loading When Request
       final client = AuthClient();
       final info = await client.systemInfoPublic(serverAddress: address);
       if (info.version == null) {
