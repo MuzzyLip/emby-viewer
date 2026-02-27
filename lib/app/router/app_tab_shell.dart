@@ -12,37 +12,63 @@ class AppTabShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final colos = Theme.of(context).colorTokens;
+    final colors = Theme.of(context).colorTokens;
+    final tabs = <_BottomTab>[
+      _BottomTab(icon: Icons.home_outlined, label: l10n.homeTab),
+      _BottomTab(icon: Icons.video_library_outlined, label: l10n.libraryTab),
+      _BottomTab(icon: Icons.search, label: l10n.searchTab),
+      _BottomTab(icon: Icons.settings_outlined, label: l10n.settingsTab),
+    ];
+    final items = tabs
+        .asMap()
+        .entries
+        .map((entry) {
+          final index = entry.key;
+          final tab = entry.value;
+          final isActive = navigationShell.currentIndex == index;
+          return BottomNavigationBarItem(
+            icon: Icon(
+              tab.icon,
+              color: isActive
+                  ? colors.bottomActiveColor
+                  : colors.bottomInactiveColor,
+            ),
+            label: tab.label,
+          );
+        })
+        .toList(growable: false);
+
     return Scaffold(
       body: navigationShell,
-      backgroundColor: colos.background,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: navigationShell.currentIndex,
-        onTap: (int index) {
-          navigationShell.goBranch(
-            index,
-            initialLocation: index == navigationShell.currentIndex,
-          );
-        },
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: l10n.homeTab,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.video_library_outlined),
-            label: l10n.libraryTab,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: l10n.searchTab,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            label: l10n.settingsTab,
-          ),
-        ],
+      backgroundColor: colors.bottomBackground,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: colors.bottomBackground,
+          border: Border(top: BorderSide(color: colors.border, width: 1)),
+        ),
+        padding: EdgeInsets.only(top: 10),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: colors.bottomBackground,
+          selectedItemColor: colors.bottomActiveColor,
+          unselectedItemColor: colors.bottomInactiveColor,
+          currentIndex: navigationShell.currentIndex,
+          onTap: (int index) {
+            navigationShell.goBranch(
+              index,
+              initialLocation: index == navigationShell.currentIndex,
+            );
+          },
+          items: items,
+        ),
       ),
     );
   }
+}
+
+final class _BottomTab {
+  const _BottomTab({required this.icon, required this.label});
+
+  final IconData icon;
+  final String label;
 }

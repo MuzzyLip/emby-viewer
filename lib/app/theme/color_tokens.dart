@@ -13,6 +13,9 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
     required this.border,
     required this.warning,
     required this.error,
+    required this.bottomBackground,
+    required this.bottomInactiveColor,
+    required this.bottomActiveColor,
   });
 
   final Color brandPrimary;
@@ -26,6 +29,9 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
   final Color border;
   final Color warning;
   final Color error;
+  final Color bottomBackground;
+  final Color bottomInactiveColor;
+  final Color bottomActiveColor;
 
   const ColorTokens.light()
     : brandPrimary = const Color(0xFF51B54A),
@@ -38,7 +44,10 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       inputBackground = const Color(0xFF222222),
       border = const Color(0xFF333333),
       warning = const Color(0xFFFDD663),
-      error = const Color(0xFFF44336);
+      error = const Color(0xFFF44336),
+      bottomBackground = const Color(0xFF151D15),
+      bottomInactiveColor = const Color(0xFF9CA3AF),
+      bottomActiveColor = const Color(0xFF51B54A);
 
   const ColorTokens.dark()
     : brandPrimary = const Color(0xFF51B54A),
@@ -51,7 +60,10 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       inputBackground = const Color(0xFF222222),
       border = const Color(0xFF333333),
       warning = const Color(0xFFFDD663),
-      error = const Color(0xFFF44336);
+      error = const Color(0xFFF44336),
+      bottomBackground = const Color(0xFF151D15),
+      bottomInactiveColor = const Color(0xFF9CA3AF),
+      bottomActiveColor = const Color(0xFF51B54A);
 
   @override
   ColorTokens copyWith({
@@ -66,6 +78,9 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
     Color? border,
     Color? warning,
     Color? error,
+    Color? bottomBackground,
+    Color? bottomInactiveColor,
+    Color? bottomActiveColor,
   }) {
     return ColorTokens(
       brandPrimary: brandPrimary ?? this.brandPrimary,
@@ -79,6 +94,9 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       border: border ?? this.border,
       warning: warning ?? this.warning,
       error: error ?? this.error,
+      bottomBackground: bottomBackground ?? this.bottomBackground,
+      bottomInactiveColor: bottomInactiveColor ?? this.bottomInactiveColor,
+      bottomActiveColor: bottomActiveColor ?? this.bottomActiveColor,
     );
   }
 
@@ -100,6 +118,21 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       border: Color.lerp(border, other.border, t)!,
       warning: Color.lerp(warning, other.warning, t)!,
       error: Color.lerp(error, other.error, t)!,
+      bottomBackground: Color.lerp(
+        bottomBackground,
+        other.bottomBackground,
+        t,
+      )!,
+      bottomInactiveColor: Color.lerp(
+        bottomInactiveColor,
+        other.bottomInactiveColor,
+        t,
+      )!,
+      bottomActiveColor: Color.lerp(
+        bottomActiveColor,
+        other.bottomActiveColor,
+        t,
+      )!,
     );
   }
 }

@@ -13,5 +13,7 @@
   "signInPage_connectToServer": "连接到服务",
   "signInPage_newToEmby": "不熟悉Emby？",
   "signInPage_learnMore": "了解更多",
-  "signInPage_enterInput": "请输入完整信息"
+  "signInPage_enterInput": "请输入完整信息",
+  "request_timeOut": "请求超时",
+  "request_unauthorized": "用户认证信息错误"
 }

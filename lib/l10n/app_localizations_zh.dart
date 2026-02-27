@@ -52,4 +52,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get signInPage_enterInput => '请输入完整信息';
+
+  @override
+  String get request_timeOut => '请求超时';
+
+  @override
+  String get request_unauthorized => '用户认证信息错误';
 }

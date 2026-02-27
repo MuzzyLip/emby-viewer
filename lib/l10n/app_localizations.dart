@@ -184,6 +184,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter entire information'**
   String get signInPage_enterInput;
+
+  /// No description provided for @request_timeOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Request Timeout'**
+  String get request_timeOut;
+
+  /// No description provided for @request_unauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid user authentication information'**
+  String get request_unauthorized;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:emby_viwer/l10n/app_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:emby_viwer/core/network/api_client.dart';
@@ -8,7 +7,6 @@ import 'package:emby_viwer/features/auth/data/dto/authenticate_by_name_dto.dart'
 import 'package:emby_viwer/features/auth/data/dto/system_info_public_dto.dart';
 import 'package:emby_viwer/core/constants/app_constants.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/v4.dart';
 
 typedef JsonMap = Map<String, dynamic>;
 
@@ -80,5 +78,16 @@ final class AuthClient extends ApiClient {
     final id = const Uuid().v4();
     await _secureStorage.write(key: AppConstants.deviceIdKey, value: id);
     return id;
+  }
+
+  Future<void> saveToken(String token) async {
+    await _secureStorage.write(key: AppConstants.accessToken, value: token);
+  }
+
+  Future<void> saveUser(AuthenticateUserDto user) async {
+    await _secureStorage.write(
+      key: "${AppConstants.userPrefix}_${user.id}_${user.serverId}",
+      value: user.toJson().toString(),
+    );
   }
 }

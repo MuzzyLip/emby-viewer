@@ -13,5 +13,7 @@
   "signInPage_connectToServer": "Connect to Server",
   "signInPage_newToEmby": "New to Emby?",
   "signInPage_learnMore": "Learn more",
-  "signInPage_enterInput": "Please enter entire information"
+  "signInPage_enterInput": "Please enter entire information",
+  "request_timeOut": "Request Timeout",
+  "request_unauthorized": "Invalid user authentication information"
 }

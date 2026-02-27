@@ -24,7 +24,7 @@ final class AppRoutePaths {
 
 final class AppRouter {
   static final GoRouter router = GoRouter(
-    // TODO: Redirect To Auth
+    // TODO: Add a Launch page to determine whether login is required.
     initialLocation: AppRoutePaths.signIn,
     routes: <RouteBase>[
       GoRoute(

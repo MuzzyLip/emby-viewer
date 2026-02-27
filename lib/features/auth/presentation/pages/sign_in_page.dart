@@ -1,6 +1,6 @@
-import 'package:emby_viwer/features/auth/data/auth_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:emby_viwer/core/constants/app_constants.dart';
@@ -9,6 +9,8 @@ import 'package:emby_viwer/app/theme/color_tokens.dart';
 import 'package:emby_viwer/l10n/app_localizations.dart';
 import 'package:emby_viwer/gen/assets.gen.dart';
 import 'package:emby_viwer/core/error/app_exception.dart';
+import 'package:emby_viwer/app/router/app_router.dart';
+import 'package:emby_viwer/features/auth/data/auth_client.dart';
 
 import 'package:emby_viwer/shared/widgets/app_logo.dart';
 import 'package:emby_viwer/features/auth/widgets/app_sign_in_title.dart';
@@ -160,11 +162,19 @@ class _SignInPageState extends State<SignInPage> {
         language: l10n.localeName,
       );
       if (!context.mounted) return;
-      debugPrint("Check data: ${data.accessToken}");
+      client.saveToken(data.accessToken!);
+      client.saveUser(data.user!);
+      context.goNamed(AppRouteNames.home);
     } on NetworkException catch (e) {
       // TODO: Detected an untrusted certificate; prompting the user to connect via an insecure connection.
       if (!context.mounted) return;
-      AppToast.error(context, e.message);
+      if (e.code == -1) {
+        AppToast.error(context, l10n.request_timeOut);
+      } else if (e.code == 401) {
+        AppToast.error(context, l10n.request_unauthorized);
+      } else {
+        AppToast.error(context, e.message);
+      }
     } catch (e) {
       if (!context.mounted) return;
       AppToast.error(context, "Request failed: $e");

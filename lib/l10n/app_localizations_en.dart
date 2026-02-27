@@ -52,4 +52,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signInPage_enterInput => 'Please enter entire information';
+
+  @override
+  String get request_timeOut => 'Request Timeout';
+
+  @override
+  String get request_unauthorized => 'Invalid user authentication information';
 }

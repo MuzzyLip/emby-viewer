@@ -45,7 +45,10 @@ class ResponseInterceptor extends Interceptor {
     } else if (e.type == DioExceptionType.badResponse) {
       int statusCode = e.response?.statusCode ?? -3;
       if (statusCode == 401) {
-        return NetworkException(statusCode, "Unauthorized");
+        return NetworkException(
+          statusCode,
+          "Unauthorized ${e.message ?? e.error}",
+        );
       }
       return NetworkException(
         statusCode,
