@@ -196,6 +196,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid user authentication information'**
   String get request_unauthorized;
+
+  /// No description provided for @request_libraryError.
+  ///
+  /// In en, this message translates to:
+  /// **'Request Library Failed'**
+  String get request_libraryError;
+
+  /// No description provided for @homePage_latestMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest Media'**
+  String get homePage_latestMedia;
+
+  /// No description provided for @homePage_browserAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get homePage_browserAll;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

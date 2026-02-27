@@ -50,7 +50,7 @@ class _SignInPageState extends State<SignInPage> {
     final colors = Theme.of(context).colorTokens;
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: colors.background,
+      backgroundColor: colors.appBackground,
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,

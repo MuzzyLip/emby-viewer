@@ -1,23 +1,17 @@
-import 'dart:async';
-
 import 'package:dio/dio.dart';
+import 'package:emby_viwer/core/constants/app_constants.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthInterceptor extends Interceptor {
   AuthInterceptor();
 
-  @override
-  void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
-    final token = await _tokenProvider();
-    if (token != null && token.isNotEmpty) {
-      // TODO: Inject Token
-    }
-    handler.next(options);
-  }
+  final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+  // No Need to Inject token. Token should be passed in params
 
-  Future<String?> _tokenProvider() {
-    return Future(() => null);
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    if (err.response?.statusCode == 401) {
+      _secureStorage.delete(key: AppConstants.accessToken);
+    }
   }
 }

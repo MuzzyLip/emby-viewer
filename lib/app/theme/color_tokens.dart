@@ -9,6 +9,7 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
     required this.fontLabel,
     required this.fontPlaceholder,
     required this.background,
+    required this.appBackground,
     required this.inputBackground,
     required this.border,
     required this.warning,
@@ -25,6 +26,7 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
   final Color fontLabel;
   final Color fontPlaceholder;
   final Color background;
+  final Color appBackground;
   final Color inputBackground;
   final Color border;
   final Color warning;
@@ -41,6 +43,7 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       fontLabel = const Color(0xFF64748B),
       fontPlaceholder = const Color(0xFF475569),
       background = const Color(0xFFFCFCFC),
+      appBackground = const Color(0xFFFCFCFC),
       inputBackground = const Color(0xFF222222),
       border = const Color(0xFF333333),
       warning = const Color(0xFFFDD663),
@@ -57,6 +60,7 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       fontLabel = const Color(0xFF64748B),
       fontPlaceholder = const Color(0xFF475569),
       background = const Color(0xFF1C1D1B),
+      appBackground = const Color(0xFF122111),
       inputBackground = const Color(0xFF222222),
       border = const Color(0xFF333333),
       warning = const Color(0xFFFDD663),
@@ -74,6 +78,7 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
     Color? fontLabel,
     Color? fontPlaceholder,
     Color? background,
+    Color? appBackground,
     Color? inputBackground,
     Color? border,
     Color? warning,
@@ -90,6 +95,7 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       fontLabel: fontLabel ?? this.fontLabel,
       fontPlaceholder: fontPlaceholder ?? this.fontPlaceholder,
       background: background ?? this.background,
+      appBackground: appBackground ?? this.appBackground,
       inputBackground: inputBackground ?? this.inputBackground,
       border: border ?? this.border,
       warning: warning ?? this.warning,
@@ -114,6 +120,7 @@ class ColorTokens extends ThemeExtension<ColorTokens> {
       fontLabel: Color.lerp(fontLabel, other.fontLabel, t)!,
       fontPlaceholder: Color.lerp(fontPlaceholder, other.fontPlaceholder, t)!,
       background: Color.lerp(background, other.background, t)!,
+      appBackground: Color.lerp(appBackground, other.appBackground, t)!,
       inputBackground: Color.lerp(inputBackground, other.inputBackground, t)!,
       border: Color.lerp(border, other.border, t)!,
       warning: Color.lerp(warning, other.warning, t)!,

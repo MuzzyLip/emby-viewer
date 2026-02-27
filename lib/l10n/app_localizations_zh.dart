@@ -58,4 +58,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get request_unauthorized => '用户认证信息错误';
+
+  @override
+  String get request_libraryError => '请求媒体库失败';
+
+  @override
+  String get homePage_latestMedia => '最新媒体库';
+
+  @override
+  String get homePage_browserAll => '查看全部';
 }

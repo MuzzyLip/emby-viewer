@@ -1,4 +1,5 @@
 import 'package:emby_viwer/app/router/app_tab_shell.dart';
+import 'package:emby_viwer/app/presentation/pages/splash_page.dart';
 import 'package:emby_viwer/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:emby_viwer/features/home/presentation/pages/home_page.dart';
 import 'package:emby_viwer/features/library/presentation/pages/library_page.dart';
@@ -7,6 +8,7 @@ import 'package:emby_viwer/features/settings/presentation/pages/settings_page.da
 import 'package:go_router/go_router.dart';
 
 final class AppRouteNames {
+  static const String splash = 'splash';
   static const String signIn = 'sign-in';
   static const String home = 'home';
   static const String library = 'library';
@@ -15,6 +17,7 @@ final class AppRouteNames {
 }
 
 final class AppRoutePaths {
+  static const String splash = '/splash';
   static const String signIn = '/sign-in';
   static const String home = '/';
   static const String library = '/library';
@@ -24,9 +27,13 @@ final class AppRoutePaths {
 
 final class AppRouter {
   static final GoRouter router = GoRouter(
-    // TODO: Add a Launch page to determine whether login is required.
-    initialLocation: AppRoutePaths.signIn,
+    initialLocation: AppRoutePaths.splash,
     routes: <RouteBase>[
+      GoRoute(
+        path: AppRoutePaths.splash,
+        name: AppRouteNames.splash,
+        builder: (context, state) => const SplashPage(),
+      ),
       GoRoute(
         path: AppRoutePaths.signIn,
         name: AppRouteNames.signIn,

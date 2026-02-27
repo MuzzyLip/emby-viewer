@@ -8,6 +8,8 @@ class AppSizeTokens {
   static const double dotSize = 8;
 
   /// Spacing Size
+  static const double spacing32 = 32;
+  static const double spacing24 = 24;
   static const double spacing4XL = 18;
   static const double spacing3XL = 16;
   static const double spacing2XL = 14;

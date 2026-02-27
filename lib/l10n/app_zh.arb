@@ -15,5 +15,8 @@
   "signInPage_learnMore": "了解更多",
   "signInPage_enterInput": "请输入完整信息",
   "request_timeOut": "请求超时",
-  "request_unauthorized": "用户认证信息错误"
+  "request_unauthorized": "用户认证信息错误",
+  "request_libraryError": "请求媒体库失败",
+  "homePage_latestMedia": "最新媒体库",
+  "homePage_browserAll": "查看全部"
 }

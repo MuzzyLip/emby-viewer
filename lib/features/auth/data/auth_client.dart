@@ -1,27 +1,29 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:emby_viwer/core/network/api_client.dart';
+import 'package:emby_viwer/core/network/emby_request_context_store.dart';
 import 'package:emby_viwer/features/auth/data/dto/authenticate_by_name_dto.dart';
 import 'package:emby_viwer/features/auth/data/dto/system_info_public_dto.dart';
 import 'package:emby_viwer/core/constants/app_constants.dart';
-import 'package:uuid/uuid.dart';
 
 typedef JsonMap = Map<String, dynamic>;
 
 final class AuthClient extends ApiClient {
-  final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
-  final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  AuthClient({EmbyRequestContextStore? contextStore})
+    : _contextStore = contextStore ?? EmbyRequestContextStore();
 
-  AuthClient();
+  final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+  final EmbyRequestContextStore _contextStore;
 
   Future<AuthenticateByNameResponseDto> authenticateByName({
     required String serverAddress,
     required String username,
     required String password,
     required String version,
-    required String language,
+    String? language,
     CancelToken? cancelToken,
   }) async {
     final api = super.client;
@@ -29,33 +31,27 @@ final class AuthClient extends ApiClient {
       serverAddress: serverAddress,
       path: "Users/authenticatebyname",
     );
-    final String client = AppConstants.isAndroid
-        ? "Android"
-        : AppConstants.isIOS
-        ? "iOS"
-        : "Emby Client";
-    final String deviceName = switch (client) {
-      "Android" => (await deviceInfo.androidInfo).name,
-      "iOS" => (await deviceInfo.iosInfo).name,
-      _ => "Emby Client",
-    };
-    final String id = await getDeviceId();
+    final params = await _contextStore.getRequestParams(
+      serverAddress: serverAddress,
+      clientVersion: version,
+      languageOverride: language,
+    );
     final json = await api.post<JsonMap>(
       url,
-      params: {
-        "X-Emby-Client": client,
-        "X-Emby-Device-Name": deviceName,
-        "X-Emby-Device-Id": id,
-        "X-Emby-Client-Version": version,
-        "X-Emby-Language": language,
-      },
+      params: params,
       data: {"Username": username, "Pw": password},
       options: Options(
         contentType: Headers.formUrlEncodedContentType,
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
       ),
     );
-    return AuthenticateByNameResponseDto.fromJson(json);
+    final dto = AuthenticateByNameResponseDto.fromJson(json);
+    await _contextStore.saveAfterLogin(
+      serverAddress: serverAddress,
+      clientVersion: version,
+      loginUrl: url,
+    );
+    return dto;
   }
 
   Future<SystemInfoPublicResponseDto> systemInfoPublic({
@@ -70,24 +66,18 @@ final class AuthClient extends ApiClient {
     return SystemInfoPublicResponseDto.fromJson(json);
   }
 
-  Future<String> getDeviceId() async {
-    final existing = await _secureStorage.read(key: AppConstants.deviceIdKey);
-    if (existing != null && existing.isNotEmpty) {
-      return existing;
-    }
-    final id = const Uuid().v4();
-    await _secureStorage.write(key: AppConstants.deviceIdKey, value: id);
-    return id;
-  }
-
   Future<void> saveToken(String token) async {
     await _secureStorage.write(key: AppConstants.accessToken, value: token);
   }
 
   Future<void> saveUser(AuthenticateUserDto user) async {
     await _secureStorage.write(
+      key: "${AppConstants.userPrefix}_current",
+      value: user.id,
+    );
+    await _secureStorage.write(
       key: "${AppConstants.userPrefix}_${user.id}_${user.serverId}",
-      value: user.toJson().toString(),
+      value: jsonEncode(user.toJson()),
     );
   }
 }

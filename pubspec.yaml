@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   flutter_localizations: # i18n
     sdk: flutter
+  intl: ^0.20.2
   flutter_svg: ^2.2.3 # SVG Renderer
   cupertino_icons: ^1.0.8
   go_router: ^17.1.0 # Router
@@ -27,6 +28,8 @@ dependencies:
   uuid: ^4.4.2
   # Device Info
   device_info_plus: ^12.3.0
+  # Carousel Component
+  carousel_slider: ^5.1.2
 
 
 dev_dependencies:

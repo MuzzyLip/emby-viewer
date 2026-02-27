@@ -15,5 +15,8 @@
   "signInPage_learnMore": "Learn more",
   "signInPage_enterInput": "Please enter entire information",
   "request_timeOut": "Request Timeout",
-  "request_unauthorized": "Invalid user authentication information"
+  "request_unauthorized": "Invalid user authentication information",
+  "request_libraryError": "Request Library Failed",
+  "homePage_latestMedia": "Latest Media",
+  "homePage_browserAll": "See All"
 }

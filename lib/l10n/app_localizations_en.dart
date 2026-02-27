@@ -58,4 +58,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get request_unauthorized => 'Invalid user authentication information';
+
+  @override
+  String get request_libraryError => 'Request Library Failed';
+
+  @override
+  String get homePage_latestMedia => 'Latest Media';
+
+  @override
+  String get homePage_browserAll => 'See All';
 }
